@@ -10,4 +10,22 @@ ul, ol, li {
 a {
   text-decoration: none; }
 
+#vidGallery {
+  width: 100%;
+  padding: 100px; }
+  #vidGallery article {
+    width: 100%;
+    border: 1px solid #ccc;
+    padding: 30px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; }
+    #vidGallery article a {
+      width: 30%; }
+      #vidGallery article a img {
+        width: 100%; }
+    #vidGallery article .con {
+      width: 65%; }
+
 /*# sourceMappingURL=style.css.map */
