@@ -72,4 +72,8 @@ $("body").on("click", "#vidGallery article a", function(e){
                     $("<span>").text("close")
                 )
         )
-})
+});
+
+$("body").on("click", ".pop span", function(){
+    $(".pop").remove(); 
+});
