@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Orbitron&display=swap");
 * {
   margin: 0;
@@ -10,11 +11,61 @@ ul, ol, li {
 a {
   text-decoration: none; }
 
-.vidGallery, .vidGallery2 {
+.vidGallery {
+  padding: 100px; }
+  .vidGallery::after {
+    content: "";
+    display: block;
+    clear: both; }
+  .vidGallery article {
+    width: 32%;
+    float: left;
+    margin-right: 2%;
+    border: 1px solid #555;
+    margin-bottom: 40px; }
+    .vidGallery article a {
+      display: block;
+      width: 100%;
+      height: 180px;
+      overflow: hidden;
+      background: #000; }
+      .vidGallery article a img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transform: scale(1.6);
+        filter: grayscale(1);
+        transition: 0.5s; }
+    .vidGallery article .con {
+      width: 100%;
+      height: 200px;
+      padding: 20px;
+      position: relative; }
+      .vidGallery article .con h2 {
+        font: bold 14px/1 "맑은 고딕", "arial";
+        color: #555;
+        margin-bottom: 15px;
+        transition: 0.5s; }
+      .vidGallery article .con p {
+        font: 11px/1.2 "맑은 고딕", "arial";
+        color: #888; }
+      .vidGallery article .con span {
+        font: bold 12px/1 "arial";
+        color: orange;
+        position: absolute;
+        bottom: 20px;
+        left: 20px; }
+    .vidGallery article:hover h2 {
+      color: orange; }
+    .vidGallery article:hover a img {
+      transform: scale(2);
+      filter: grayscale(0); }
+
+.vidGallery2 {
   width: 100%;
   padding: 100px;
   border: 1px solid red; }
-  .vidGallery article, .vidGallery2 article {
+  .vidGallery2 article {
     width: 100%;
     border: 1px solid #ccc;
     padding: 30px;
@@ -22,11 +73,11 @@ a {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap; }
-    .vidGallery article a, .vidGallery2 article a {
+    .vidGallery2 article a {
       width: 30%; }
-      .vidGallery article a img, .vidGallery2 article a img {
+      .vidGallery2 article a img {
         width: 100%; }
-    .vidGallery article .con, .vidGallery2 article .con {
+    .vidGallery2 article .con {
       width: 65%; }
 
 .pop {
