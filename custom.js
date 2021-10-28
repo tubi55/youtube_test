@@ -11,8 +11,7 @@ $.ajax({
 .success(function(data){
    // console.log(data); 
 
-    let items = data.items; 
-    console.log(items); 
+    let items = data.items;    
 
     //영상 갯수만큼 반복
     $(items).each(function(index, data){
@@ -65,9 +64,7 @@ $("body").on("click", "#vidGallery article a", function(e){
                     $("<iframe>")
                         .attr({
                             src : "https://www.youtube.com/embed/"+vidId,
-                            frameborder : 0,
-                            width:"100%", 
-                            height:600
+                            frameborder : 0                            
                         }), 
                     $("<span>").text("close")
                 )
