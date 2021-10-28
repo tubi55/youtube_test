@@ -12,31 +12,12 @@ getYoutube({
 })
 
 
-//썸네일 클릭시 레이어팝업으로 유튜브 영상 호출하기 
-$("body").on("click", ".vidGallery article a", function(e){
-    e.preventDefault(); 
 
-    let vidId = $(this).attr("href"); 
+function getYoutube(opt){ 
+    if(opt.frame===undefined) console.error("frame속성값은 필수 입력사항입니다.");
+    if(opt.playlist===undefined) opt.playlist = "PLYOPkdUKSFgWPLsAWpqRpK0cCiAGdxi-Y";
+    if(opt.num===undefined) opt.num = 2;
 
-    $("body")
-        .append(
-            $("<div class='pop'>")
-                .append(
-                    $("<iframe>")
-                        .attr({
-                            src : "https://www.youtube.com/embed/"+vidId,
-                            frameborder : 0                            
-                        }), 
-                    $("<span>").text("close")
-                )
-        )
-});
-
-$("body").on("click", ".pop span", function(){
-    $(".pop").remove(); 
-});
-
-function getYoutube(opt){
     $.ajax({
         url:"https://www.googleapis.com/youtube/v3/playlistItems",
         dataType : 'jsonp',
@@ -48,8 +29,7 @@ function getYoutube(opt){
         }
     })
     .success(function(data){   
-        let items = data.items;  
-        console.log(items);  
+        let items = data.items;         
     
         //영상 갯수만큼 반복
         $(items).each(function(index, data){
@@ -85,5 +65,30 @@ function getYoutube(opt){
     })
     .error(function(err){
         console.error(err); 
+    });
+
+    //썸네일 클릭시 레이어팝업으로 유튜브 영상 호출하기 
+    $("body").on("click", opt.frame+" article a", function(e){
+        e.preventDefault(); 
+
+        let vidId = $(this).attr("href"); 
+
+        $("body")
+            .append(
+                $("<div class='pop'>")
+                    .append(
+                        $("<iframe>")
+                            .attr({
+                                src : "https://www.youtube.com/embed/"+vidId,
+                                frameborder : 0   ,
+                                allowfullscreen : true                         
+                            }), 
+                        $("<span>").text("close")
+                    )
+            )
+    });
+
+    $("body").on("click", ".pop span", function(){
+        $(".pop").remove(); 
     });
 }
