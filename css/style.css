@@ -10,10 +10,11 @@ ul, ol, li {
 a {
   text-decoration: none; }
 
-#vidGallery {
+.vidGallery, .vidGallery2 {
   width: 100%;
-  padding: 100px; }
-  #vidGallery article {
+  padding: 100px;
+  border: 1px solid red; }
+  .vidGallery article, .vidGallery2 article {
     width: 100%;
     border: 1px solid #ccc;
     padding: 30px;
@@ -21,11 +22,11 @@ a {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap; }
-    #vidGallery article a {
+    .vidGallery article a, .vidGallery2 article a {
       width: 30%; }
-      #vidGallery article a img {
+      .vidGallery article a img, .vidGallery2 article a img {
         width: 100%; }
-    #vidGallery article .con {
+    .vidGallery article .con, .vidGallery2 article .con {
       width: 65%; }
 
 .pop {
