@@ -55,7 +55,10 @@ function getYoutube(opt){
                                     ),
                             $("<div class='con'>")
                                     .append(
-                                        $("<h2>").text(data.snippet.title),
+                                        $("<h2>")
+                                            .text(data.snippet.title)
+                                            .attr({dataId : data.snippet.resourceId.videoId })
+                                        ,
                                         $("<p>").text(txt),
                                         $("<span>").text(date)
                                     )
@@ -70,8 +73,20 @@ function getYoutube(opt){
     //썸네일 클릭시 레이어팝업으로 유튜브 영상 호출하기 
     $("body").on("click", opt.frame+" article a", function(e){
         e.preventDefault(); 
+        createPop(this);
+    });
 
-        let vidId = $(this).attr("href"); 
+    $("body").on("click", opt.frame+" article h2", function(){
+        createPop(this);
+    });
+
+    $("body").on("click", ".pop span", function(){
+        $(".pop").remove(); 
+    });
+    
+
+    function createPop(item){
+        let vidId = $(item).attr("href"); 
 
         $("body")
             .append(
@@ -86,9 +101,5 @@ function getYoutube(opt){
                         $("<span>").text("close")
                     )
             )
-    });
-
-    $("body").on("click", ".pop span", function(){
-        $(".pop").remove(); 
-    });
+    }
 }

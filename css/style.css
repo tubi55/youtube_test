@@ -53,7 +53,10 @@ a {
         font: bold 14px/1 "맑은 고딕", "arial";
         color: #fff;
         margin-bottom: 15px;
-        transition: 0.5s; }
+        transition: 0.5s;
+        cursor: pointer; }
+        .vidGallery article:not(:first-child) .con h2:hover {
+          color: orange; }
       .vidGallery article:not(:first-child) .con p {
         font: 11px/1.2 "맑은 고딕", "arial";
         color: #ddd; }
