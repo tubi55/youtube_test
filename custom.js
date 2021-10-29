@@ -57,7 +57,7 @@ function getYoutube(opt){
                                     .append(
                                         $("<h2>")
                                             .text(data.snippet.title)
-                                            .attr({dataId : data.snippet.resourceId.videoId })
+                                            .attr({href : data.snippet.resourceId.videoId })
                                         ,
                                         $("<p>").text(txt),
                                         $("<span>").text(date)
