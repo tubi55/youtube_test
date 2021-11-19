@@ -1,38 +1,38 @@
-var selector = ".vidGallery";
-var playlist = "PLYOPkdUKSFgX5CgKf68RJzJHec0XEdBNd";
-var num = 4;
+function Youtube(){
+   this.init(); 
+   this.bindingEvent();
+}
+Youtube.prototype.init = function(){
+    this.selector = ".vidGallery";
+    this.playlist = "PLYOPkdUKSFgX5CgKf68RJzJHec0XEdBNd";
+    this.key = "AIzaSyCbARLbftvbPSX5cjABTy1LZpet3RVkrh4";
+    this.num = 4;
+}
+Youtube.prototype.bindingEvent = function(){
+    //처음 로딩시 유튜브 데이터 출력
+    this.getYoutube({
+        frame: this.selector,
+        playlist: this.playlist,
+        num : this.num
+    });
 
-getYoutube({
-    frame: selector,
-    playlist: playlist,
-    num : num
-});
+    //동적인 리스트의 썸네일 클릭시 팝업호출
+    $("body").on("click", this.selector+" article a", function(e){
+        e.preventDefault(); 
+        this.createPop(e.currentTarget);
+    }.bind(this));
 
-/*
-getYoutube({
-    frame: ".vidGallery2",
-    playlist: "PLYOPkdUKSFgXiJXlCnCmIoeK_QReBgOlu",
-    num: 4
-})
-*/
+    //동적인 리스트의 제목 클릭시 팝업호출
+    $("body").on("click", this.selector+" article h2", function(e){
+        this.createPop(e.currentTarget);
+    }.bind(this));
 
-//썸네일 클릭시 레이어팝업으로 유튜브 영상 호출하기 
-$("body").on("click", selector+" article a", function(e){
-    e.preventDefault(); 
-    createPop(this);
-});
-
-$("body").on("click", selector+" article h2", function(){
-    createPop(this);
-});
-
-$("body").on("click", ".pop span", function(){
-    $(".pop").remove(); 
-});
-
-
-
-function getYoutube(opt){ 
+    //팝업의 닫기버튼 클릭시 팝업닫기
+    $("body").on("click", ".pop span", function(){
+        $(".pop").remove(); 
+    });
+}
+Youtube.prototype.getYoutube = function(opt){
     if(opt.frame===undefined) console.error("frame속성값은 필수 입력사항입니다.");
     if(opt.playlist===undefined) opt.playlist = "PLYOPkdUKSFgWPLsAWpqRpK0cCiAGdxi-Y";
     if(opt.num===undefined) opt.num = 2;
@@ -42,7 +42,7 @@ function getYoutube(opt){
         dataType : 'jsonp',
         data :{
             part : "snippet", 
-            key : "AIzaSyCbARLbftvbPSX5cjABTy1LZpet3RVkrh4", 
+            key : this.key, 
             maxResults : opt.num, 
             playlistId : opt.playlist
         }
@@ -89,8 +89,7 @@ function getYoutube(opt){
         console.error(err); 
     });
 }
-
-function createPop(item){
+Youtube.prototype.createPop = function(item){
     let vidId = $(item).attr("href"); 
 
     $("body")
@@ -107,3 +106,9 @@ function createPop(item){
                 )
         )
 }
+
+
+
+
+
+
