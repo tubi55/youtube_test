@@ -1,15 +1,34 @@
+var selector = ".vidGallery";
+var playlist = "PLYOPkdUKSFgX5CgKf68RJzJHec0XEdBNd";
+var num = 4;
+
 getYoutube({
-    frame: ".vidGallery",
-    playlist: "PLYOPkdUKSFgX5CgKf68RJzJHec0XEdBNd",
-    num : 4
+    frame: selector,
+    playlist: playlist,
+    num : num
 });
 
-
+/*
 getYoutube({
     frame: ".vidGallery2",
     playlist: "PLYOPkdUKSFgXiJXlCnCmIoeK_QReBgOlu",
     num: 4
 })
+*/
+
+//썸네일 클릭시 레이어팝업으로 유튜브 영상 호출하기 
+$("body").on("click", selector+" article a", function(e){
+    e.preventDefault(); 
+    createPop(this);
+});
+
+$("body").on("click", selector+" article h2", function(){
+    createPop(this);
+});
+
+$("body").on("click", ".pop span", function(){
+    $(".pop").remove(); 
+});
 
 
 
@@ -32,7 +51,7 @@ function getYoutube(opt){
         let items = data.items;         
     
         //영상 갯수만큼 반복
-        $(items).each(function(index, data){
+        $(items).each(function(_, data){
             //본문 텍스트 내용이 200글자를 넘어가면 말줄임표 붙이기 
             let txt = data.snippet.description; 
             let len = txt.length; 
@@ -70,19 +89,7 @@ function getYoutube(opt){
         console.error(err); 
     });
 
-    //썸네일 클릭시 레이어팝업으로 유튜브 영상 호출하기 
-    $("body").on("click", opt.frame+" article a", function(e){
-        e.preventDefault(); 
-        createPop(this);
-    });
-
-    $("body").on("click", opt.frame+" article h2", function(){
-        createPop(this);
-    });
-
-    $("body").on("click", ".pop span", function(){
-        $(".pop").remove(); 
-    });
+    
     
 
     function createPop(item){
