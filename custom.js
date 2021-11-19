@@ -88,25 +88,22 @@ function getYoutube(opt){
     .error(function(err){
         console.error(err); 
     });
+}
 
-    
-    
+function createPop(item){
+    let vidId = $(item).attr("href"); 
 
-    function createPop(item){
-        let vidId = $(item).attr("href"); 
-
-        $("body")
-            .append(
-                $("<div class='pop'>")
-                    .append(
-                        $("<iframe>")
-                            .attr({
-                                src : "https://www.youtube.com/embed/"+vidId,
-                                frameborder : 0   ,
-                                allowfullscreen : true                         
-                            }), 
-                        $("<span>").text("close")
-                    )
-            )
-    }
+    $("body")
+        .append(
+            $("<div class='pop'>")
+                .append(
+                    $("<iframe>")
+                        .attr({
+                            src : "https://www.youtube.com/embed/"+vidId,
+                            frameborder : 0   ,
+                            allowfullscreen : true                         
+                        }), 
+                    $("<span>").text("close")
+                )
+        )
 }
